@@ -1,0 +1,110 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+     >
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#FFFFFF"
+    >
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        >
+        <ImageView
+            android:id="@+id/icon"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/playericon"
+
+            />
+    </RelativeLayout>
+
+
+
+
+    <TextView
+        android:id="@+id/nombrelista"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:gravity="center_vertical"
+        android:text="Alexander"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+    <RelativeLayout
+        android:layout_width="0dp"
+
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        >
+        <ImageView
+            android:id="@+id/sexicon"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/m"
+
+            />
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:id="@+id/puntosLista"
+        android:paddingLeft="10dp"
+        android:layout_width="50dp"
+        android:textColor="#323232"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:text="100"
+
+        android:textSize="20dp" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="0.2">
+        <ImageView
+            android:id="@+id/icono"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/beer"
+
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:paddingLeft="20dp"
+        android:layout_height="match_parent"
+        android:paddingRight="15dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_weight="0.5">
+        <ImageView
+            android:id="@+id/delete"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/close"
+
+            />
+    </RelativeLayout>
+
+
+
+</LinearLayout>
+
+
+</RelativeLayout> 

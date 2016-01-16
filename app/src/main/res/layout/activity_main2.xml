@@ -1,0 +1,166 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/papa"
+    android:orientation="vertical">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="3"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    >
+    <TextSwitcher
+        android:id="@+id/titulo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="#3867e5"
+         />
+
+</RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/barra"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
+
+
+        android:layout_margin="16dp"
+        android:background="#aaE0E0E0"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp">
+            <ImageView
+                android:id="@+id/iconoplayer"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/todos"
+
+                />
+        </RelativeLayout>
+
+        <TextSwitcher
+            android:id="@+id/jugador"
+            android:paddingLeft="8dp"
+            android:layout_width="0dp"
+            android:layout_weight="5.5"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#071013"
+
+
+            />
+
+
+        <TextView
+            android:id="@+id/sorbos"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+
+            android:fontFamily="sans-serif-medium"
+
+            android:text="+4"
+            android:textColor="#59C9A5"
+            android:textSize="24dp"
+
+
+            />
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="15dp"
+
+                android:src="@drawable/beer"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/descripcion"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4.5"
+
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#aaE0E0E0"
+        android:orientation="vertical">
+
+        <TextView
+
+            android:id="@+id/instruc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#234"
+            android:gravity="center"
+            style="@style/AudioFileInfoOverlayText2"
+            android:text="@string/titleGame"
+            android:textSize="25dp" />
+
+        <ScrollView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+            <TextSwitcher
+                android:id="@+id/descripcion1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-s-erif-light"
+                android:text="Cargando..."
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/botones"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="16dp"
+
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@android:color/holo_blue_light"
+            android:fontFamily="sans-serif-medium"
+            android:onClick="siguiente"
+            android:text="@string/btnGameSiguiente"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

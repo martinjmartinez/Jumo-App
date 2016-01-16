@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="verde">@android:color/holo_green_light</color>
+    <color name="rojo">@android:color/holo_red_light</color>
+    <color name="azul">@android:color/holo_blue_light</color>
+    <color name="amarillo">@android:color/holo_orange_light</color>
+    <color name="rosa">@android:color/holo_purple</color>
+</resources>

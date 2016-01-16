@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">JUMO</string>
+
+    <string name="action_settings">Settings</string>
+
+
+
+
+    <string name="tituloMenu1">Add players:</string>
+    <string name="tituloMenu2">Goal:</string>
+    <string name="btnMenu">Quick play</string>
+    <string name="toastMenuElseAdd">Added. Type the name of the next player.</string>
+    <string name="toastMenuAdd">Added. Type the name of the next player.</string>
+    <string name="toastMenuElseCantSorbos">Choose the sip goal.</string>
+    <string name="toastMenuElseEditTextJugador">Add players!</string>
+    <string name="hintMenuNombre">Name</string>
+    <string name="titleGame">Instruction</string>
+    <string name="btnGamePasar">Skip</string>
+    <string name="btnGameSiguiente">Done</string>
+    <string name="hintGameAdd">New player</string>
+    <string name="toastGameAdd">Added</string>
+    <string name="toastGameEliminado">Deleted</string>
+    <string name="toastGameElseAdd">Write the name please.</string>
+    <string name="titleGanador">Winner!</string>
+    <string name="fraseGanador">Tomorrow will be a great day!</string>
+    <string name="btnGanador">Menu</string>
+    <string name="title">First time?</string>
+    <string name="message">We need access to the internet to download our challenges. This will be necessary only once. Please connect to the internet.</string>
+    <string name="positive">Wi-Fi Settings</string>
+    <string name="Todos">Everyone</string>
+    <string name="titleAmigos">No players left!</string>
+    <string name="messageAmigos">There are no players.</string>
+    <string name="positiveAmigos">Add</string>
+    <string name="returnMenu">Menu</string>
+    <string name="solono">Don\'t drink alone. Add another player!</string>
+    <string name="btnMenu2">Add players</string>
+    <string name="jugadores">Players</string>
+    <string name="jugar">Start</string>
+    <string name="opciones">Options</string>
+    <string name="RetosCachondos">Spicy</string>
+    <string name="RetosPersonales">Personal</string>
+    <string name="RetosGrupales">Group</string>
+    <string name="Retos">Challenges:</string>
+    <string name="sexo">Sex:</string>
+    <string name="hombre">Man</string>
+    <string name="Mujer">Woman</string>
+    <string name="selectsex">Choose player\'s gender.</string>
+    <string name="Idioma">Language</string>
+    <string name="espanol">Spanish</string>
+    <string name="ingles">English</string>
+    <string name="lito">Dizzy</string>
+    <string name="happy">Happy</string>
+    <string name="jumo">JUMO</string>
+    <string name="bebe">Drink</string>
+</resources>

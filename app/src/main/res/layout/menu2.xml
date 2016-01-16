@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/logo3"/>
+
+
+    <LinearLayout
+        android:layout_below="@id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/twitter"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:onClick="instrucciones"
+                android:scaleType="centerInside"
+                android:src="@drawable/twitterlogo" />
+
+            <ImageView
+                android:id="@+id/instagram"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:onClick="instrucciones"
+                android:scaleType="centerInside"
+                android:src="@drawable/instalogo" />
+
+
+            <ImageView
+                android:id="@+id/facebook"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:onClick="opciones"
+                android:scaleType="centerInside"
+                android:src="@drawable/facebooklogo"/>
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@android:color/holo_blue_light"
+            android:fontFamily="sana-serif-light"
+            android:onClick="jugarRapido"
+            android:text="@string/btnMenu"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+
+            />
+
+        <Button
+            android:id="@+id/agregarJugadores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@android:color/holo_blue_light"
+            android:fontFamily="sana-serif-light"
+            android:onClick="jugar"
+            android:text="@string/btnMenu2"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+
+            />
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="0.25"
+            android:orientation="horizontal">
+
+
+
+
+            <ImageView
+                android:id="@+id/instruciones"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="0.3"
+                android:onClick="instrucciones"
+                android:scaleType="centerInside"
+                android:src="@drawable/instrucciones"
+                android:textAllCaps="false" />
+
+
+            <ImageView
+                android:id="@+id/opciones"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:onClick="opciones"
+                android:scaleType="centerInside"
+                android:src="@drawable/opciones"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white" />
+
+
+        </LinearLayout>
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-1101630221960337/7768268844">
+
+        </com.google.android.gms.ads.AdView>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

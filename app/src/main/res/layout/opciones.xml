@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+        android:id="@+id/title"
+        style="@style/AudioFileInfoOverlayText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/opciones"
+        android:textSize="50sp" />
+
+
+
+        <LinearLayout
+
+            android:id="@+id/linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/barra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#aaE0E0E0"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp">
+                    <ImageView
+                        android:id="@+id/iconoRetosGenerales"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/todos"
+
+                        />
+
+
+                </RelativeLayout>
+                <Switch
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:layout_height="match_parent"
+                    android:thumbTextPadding="5dp"
+                    android:switchMinWidth="40dp"
+                  android:text="@string/RetosGrupales"
+                    android:fontFamily="sans-serif-medium"
+                    android:id="@+id/switch1"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="8dp" />
+
+
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/barra1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#aaE0E0E0"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp">
+                    <ImageView
+                        android:id="@+id/iconoRetosPersonales"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/playericon"
+
+                        />
+
+
+                </RelativeLayout>
+                <Switch
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:layout_height="match_parent"
+                  android:text="@string/RetosPersonales"
+                    android:thumbTextPadding="5dp"
+                    android:switchMinWidth="40dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="20sp"
+                    android:id="@+id/switchRetosPersonales"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="8dp" />
+
+
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/barra3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#aaE0E0E0"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp">
+                    <ImageView
+                        android:id="@+id/iconoOpcionCachondo"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/lovecon"
+
+                        />
+
+
+                </RelativeLayout>
+
+                <Switch
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:layout_height="match_parent"
+                    android:text="@string/RetosCachondos"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="20sp"
+                    android:thumbTextPadding="5dp"
+                    android:switchMinWidth="40dp"
+                    android:id="@+id/switchCachondo"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="8dp" />
+
+
+
+
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/barra4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#aaE0E0E0"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnespanol"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/espanol"
+                        android:textAllCaps="false"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:textSize="20dp"
+                        android:background="@android:color/holo_blue_light"
+                        android:textColor="@android:color/white"
+                        android:fontFamily="sans-serif-medium"
+                        android:onClick="setEspanol"/>
+
+                    <Button
+                        android:id="@+id/btningles"
+                        android:layout_width="0dp"
+                        android:background="@android:color/holo_red_light"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ingles"
+                        android:textAllCaps="false"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/white"
+                        android:fontFamily="sans-serif-medium"
+                        android:onClick="setIngles"/>
+
+                </LinearLayout>
+
+
+
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:id="@+id/menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@android:color/holo_blue_light"
+            android:onClick="volverMenu"
+            android:fontFamily="sana-serif-light"
+            android:text="@string/returnMenu"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+
+            />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

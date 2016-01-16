@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/layoutnewplayer"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#aaE0E0E0"
+        android:orientation="horizontal"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp">
+
+
+        <EditText
+
+            android:id="@+id/nombrenuevo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.3"
+            android:hint="@string/hintMenuNombre"
+            android:inputType="textCapSentences"
+            android:maxLength="10"
+            android:singleLine="true"
+            android:layout_marginRight="6dp" />
+
+        <ImageView
+            android:id="@+id/sexo"
+            android:gravity="center_vertical"
+            android:layout_weight="0.35"
+            android:layout_width="0dp"
+            android:spinnerMode="dialog"
+            android:layout_height="match_parent"
+             android:src="@drawable/mf"
+            android:onClick="sexos"/>
+
+
+        <ImageView
+            android:id="@+id/agregar2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:onClick="agregar"
+            android:scaleType="centerInside"
+            android:src="@drawable/add"
+            android:textAllCaps="false"
+            android:layout_margin="4dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sexolay"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#ccFFFFFF"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp">
+
+
+        <ImageView
+            android:id="@+id/hombre"
+            android:gravity="center_vertical"
+            android:layout_weight="0.35"
+            android:layout_width="0dp"
+            android:spinnerMode="dialog"
+            android:layout_height="match_parent"
+            android:src="@drawable/masculino"
+            android:onClick="hombre" />
+        <ImageView
+            android:id="@+id/mujer"
+            android:gravity="center_vertical"
+            android:layout_weight="0.35"
+            android:layout_width="0dp"
+            android:spinnerMode="dialog"
+            android:layout_height="match_parent"
+            android:src="@drawable/femenino"
+            android:onClick="mujer"/>
+
+
+
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
