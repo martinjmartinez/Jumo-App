@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -72,6 +73,7 @@ public class JugadaNormal extends AppCompatActivity {
     Button next,skip;
     boolean isHombre,selec;
     boolean continua;
+    Vibrator vibrator;
 
     InterstitialAd anuncio;
 
@@ -108,10 +110,12 @@ public class JugadaNormal extends AppCompatActivity {
         anuncio.setAdUnitId("ca-app-pub-1101630221960337/1721735241");
         requestNewInterstitial();
 
+        vibrator = (Vibrator) getSystemService(this.VIBRATOR_SERVICE);
+
         retos=new ArrayList<Integer>();
 
         if(appState.myLocale.getLanguage().equals("es")){
-            if(appState.isPersonal() && appState.isGrupal() && appState.isCachondo()){
+            if(appState.isPersonal() && appState.isGrupal() && !appState.isCachondo()){
                 baseDatos="Retos";
             }else if(appState.isPersonal() && !appState.isGrupal() && !appState.isCachondo()){
                 baseDatos="RetosPersonales";
@@ -119,20 +123,20 @@ public class JugadaNormal extends AppCompatActivity {
                 baseDatos="RetosTodos";
             }else if(!appState.isPersonal() && !appState.isGrupal() && appState.isCachondo()){
                 baseDatos="RetosCachondos";
-            }else if(appState.isPersonal() && appState.isGrupal() && !appState.isCachondo()){
+            }/*else if(appState.isPersonal() && appState.isGrupal() && !appState.isCachondo()){
                 baseDatos="RetosPG";
             }else if(appState.isPersonal() && !appState.isGrupal() && appState.isCachondo()){
                 baseDatos="RetosPC";
             }else if(!appState.isPersonal() && appState.isGrupal() && appState.isCachondo()) {
                 baseDatos = "RetosGC";
-            }
+            }*/
             else{
                 baseDatos="Retos";
             }
 
         }else{
 
-            if(appState.isPersonal() && appState.isGrupal() && appState.isCachondo()){
+            if(appState.isPersonal() && appState.isGrupal() && !appState.isCachondo()){
                 baseDatos="RetosEn";
             }else if(appState.isPersonal() && !appState.isGrupal() && !appState.isCachondo()){
                 baseDatos="RetosPersonalesEn";
@@ -140,13 +144,13 @@ public class JugadaNormal extends AppCompatActivity {
                 baseDatos="RetosTodosEn";
             }else if(!appState.isPersonal() && !appState.isGrupal() && appState.isCachondo()){
                 baseDatos="RetosCachondosEn";
-            }else if(appState.isPersonal() && appState.isGrupal() && !appState.isCachondo()){
+            }/*else if(appState.isPersonal() && appState.isGrupal() && !appState.isCachondo()){
                 baseDatos="RetosPGEn";
             }else if(appState.isPersonal() && !appState.isGrupal() && appState.isCachondo()){
                 baseDatos="RetosPCEn";
             }else if(!appState.isPersonal() && appState.isGrupal() && appState.isCachondo()) {
                 baseDatos = "RetosGCEn";
-            }
+            }*/
             else{
                 baseDatos="RetosEn";
             }
@@ -210,6 +214,9 @@ public class JugadaNormal extends AppCompatActivity {
         texto2.setGravity(Gravity.CENTER);
         texto2.setTextAppearance(getApplicationContext(),
                 R.style.AudioFileInfoOverlayText);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/manteka.ttf");
+        texto.setTypeface(custom_font);
+        texto2.setTypeface(custom_font);
         tituloText.addView(texto);
         tituloText.addView(texto2);
 
@@ -351,12 +358,27 @@ public class JugadaNormal extends AppCompatActivity {
         tituloText.setInAnimation(this, R.anim.push_down_in);
         tituloText.setOutAnimation(this, R.anim.push_down_out);
         text.setInAnimation(this, R.anim.fadein);
+        tituloText.setText(titulo);
+        TextView  theme =(TextView)tituloText.getChildAt(tituloText.getDisplayedChild());
+        if(puntos<=3){
+
+            theme.setTextColor(getResources().getColor(R.color.azul));
+
+        }else if(puntos>3 && puntos<=6){
+            theme.setTextColor(getResources().getColor(R.color.verde));
+
+        }else if(puntos>6){
+            vibrator.vibrate(1000);
+            theme.setTextColor(getResources().getColor(R.color.rojo));
+
+
+        }
         text.setOutAnimation(this, R.anim.fadeout);
         nombreText.setInAnimation(this, R.anim.fadein);
         nombreText.setOutAnimation(this, R.anim.fadeout);
 
 
-        tituloText.setText(titulo);
+
 
         if(todos==false && cachondo==false ) {
             skip.setVisibility(View.VISIBLE);
@@ -366,7 +388,7 @@ public class JugadaNormal extends AppCompatActivity {
                 iconoplayer.setImageResource(appState.getMyList().get(jugador).getImagen());
             }
 
-            next.setBackgroundColor(getResources().getColor(R.color.azul));
+            next.setBackground(getResources().getDrawable(R.drawable.mybutton));
             LinearLayout.LayoutParams paramsSkip = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT,2);
             paramsSkip.setMargins(0, 0, 8, 0);
             skip.setLayoutParams(paramsSkip);
@@ -397,7 +419,7 @@ public class JugadaNormal extends AppCompatActivity {
 
             skip.setVisibility(View.INVISIBLE);
             next.setLayoutParams(new LinearLayout.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            next.setBackgroundColor(getResources().getColor(R.color.verde));
+            next.setBackground(getResources().getDrawable(R.drawable.mybutton3));
             skip.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT));
             nombreText.setText(getText(R.string.Todos));
             iconoplayer.setImageResource(R.drawable.todos);
@@ -427,6 +449,9 @@ public class JugadaNormal extends AppCompatActivity {
 
         final ListAdapter adapter = new ListAdapter(this, R.layout.row, appState.getMyList());
         adapter.notifyDataSetChanged();
+        TextView title = (TextView)popupView2.findViewById(R.id.title1234);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/manteka.ttf");
+        title.setTypeface(custom_font);
         popupWindow2.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         popupWindow2.setOutsideTouchable(true);
         popupWindow2.setFocusable(true);

@@ -5,11 +5,11 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "majamacu.jumo"
+        applicationId "majamacu.JUMOAPP"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 8
-        versionName "1.1.1"
+        versionCode 10
+        versionName "1.2.1"
     }
     buildTypes {
         release {
@@ -36,7 +36,4 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    compile 'com.github.paolorotolo:appintro:3.2.0'
-}
 

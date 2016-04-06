@@ -3,6 +3,7 @@ package majamacu.jumo;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.ironsource.mobilcore.CallbackResponse;
 import com.ironsource.mobilcore.MobileCore;
@@ -27,6 +29,7 @@ public class Opciones extends AppCompatActivity {
     Switch retosGrupales;
     Init appState;
     Button espanol,ingles;
+    TextView title;
 
 
 
@@ -41,8 +44,11 @@ public class Opciones extends AppCompatActivity {
         retosGrupales = (Switch)findViewById(R.id.switch1);
         espanol=(Button)findViewById(R.id.btnespanol);
         ingles=(Button)findViewById(R.id.btningles);
+        title = (TextView) findViewById(R.id.title12);
 
 
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/manteka.ttf");
+        title.setTypeface(custom_font);
 
 
 
@@ -51,11 +57,11 @@ public class Opciones extends AppCompatActivity {
         retosPersonales.setChecked(appState.isPersonal());
 
         if(appState.isEspanol()){
-            espanol.setBackgroundColor(getResources().getColor(R.color.azul));
-            ingles.setBackgroundColor(getResources().getColor(R.color.rojo));
+            espanol.setBackground(getResources().getDrawable(R.drawable.mybutton));
+            ingles.setBackground(getResources().getDrawable(R.drawable.mybutton2));
         }else{
-            ingles.setBackgroundColor(getResources().getColor(R.color.azul));
-            espanol.setBackgroundColor(getResources().getColor(R.color.rojo));
+            ingles.setBackground(getResources().getDrawable(R.drawable.mybutton));
+            espanol.setBackground(getResources().getDrawable(R.drawable.mybutton2));
 
         }
 

@@ -70,6 +70,17 @@ public class Menu extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.webpage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://jumoapp.com";
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+
 
         if (Locale.getDefault().getLanguage().equals("es")) {
             baseDatos = "Retos";
@@ -149,16 +160,13 @@ public class Menu extends AppCompatActivity {
     }
 
     public void opciones(View view) {
+
         Intent intent = new Intent(Menu.this, Opciones.class);
         Menu.this.startActivityForResult(intent, 0);
 
     }
 
-    public void instrucciones(View view) {
-        Intent intent = new Intent(Menu.this, MyIntro.class);
-        Menu.this.startActivityForResult(intent, 0);
 
-    }
 
 
     public void onBackPressed() {

@@ -25,59 +25,51 @@ import java.util.Locale;
  * Created by marti on 9/9/2015.
  */
 
-    public class App extends AppCompatActivity {
-    String baseDatos,baseDatos2,baseDatos3,baseDatos4,baseDatos5,baseDatos6;
+public class App extends AppCompatActivity {
+    String baseDatos, baseDatos2, baseDatos3, baseDatos4, baseDatos5, baseDatos6;
 
     Init appState;
 
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.splash);
+        appState = ((Init) getApplicationContext());
 
-    @Override public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.splash);
-        appState= ((Init)getApplicationContext());
-
-                baseDatos="Retos";
-                baseDatos2="RetosTodos";
-                baseDatos3="RetosPersonales";
-                baseDatos4="RetosEn";
-                baseDatos5="RetosTodosEn";
-                baseDatos6="RetosPersonalesEn";
-        if(Locale.getDefault().getLanguage().equals("es")){
-            setLocale("es");
-            appState.setEspanol(true);
-        }else{
-            setLocale("ën");
-            appState.setEspanol(false);
-        }
+        baseDatos = "Retos";
+        baseDatos2 = "RetosTodos";
+        baseDatos3 = "RetosPersonales";
+        baseDatos4 = "RetosEn";
+        baseDatos5 = "RetosTodosEn";
+        baseDatos6 = "RetosPersonalesEn";
 
 
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(baseDatos);
 
-            ParseQuery<ParseObject> query = ParseQuery.getQuery(baseDatos);
+        query.whereEqualTo("esReto", false);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> object, ParseException e) {
+                if (e == null) {
+                    ParseObject.pinAllInBackground(object);
+                } else {
 
-            query.whereEqualTo("esReto", false);
-            query.findInBackground(new FindCallback<ParseObject>() {
-                public void done(List<ParseObject> object, ParseException e) {
-                    if (e == null) {
-                        ParseObject.pinAllInBackground(object);
-                    } else {
-
-                    }
                 }
-            });
+            }
+        });
 
-            ParseQuery<ParseObject> query2 = ParseQuery.getQuery(baseDatos2);
+        ParseQuery<ParseObject> query2 = ParseQuery.getQuery(baseDatos2);
 
-            query2.whereEqualTo("esReto", false);
-            query2.findInBackground(new FindCallback<ParseObject>() {
-                public void done(List<ParseObject> object, ParseException e) {
-                    if (e == null) {
-                        ParseObject.pinAllInBackground(object);
-                    } else {
+        query2.whereEqualTo("esReto", false);
+        query2.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> object, ParseException e) {
+                if (e == null) {
+                    ParseObject.pinAllInBackground(object);
+                } else {
 
-                    }
                 }
-            });
+            }
+        });
 
         ParseQuery<ParseObject> query3 = ParseQuery.getQuery(baseDatos3);
 
@@ -132,46 +124,28 @@ import java.util.Locale;
         });
 
 
+        Thread timerThread = new Thread() {
+            public void run() {
+                try {
 
-
-
-            Thread timerThread = new Thread(){
-                public void run(){
-                    try{
-
-                        sleep(4000);
-                    }catch(InterruptedException e){
-                        e.printStackTrace();
-                    }finally{
-                        App.this.finish();
-                        Intent intent = new Intent(App.this,Menu.class);
-                        startActivity(intent);
-                    }
+                    sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    Intent intent = new Intent(App.this, Menu.class);
+                    startActivity(intent);
+                    finish();
                 }
-            };
-            timerThread.start();
-
-
-
-
-
-
-
-        }
-    public void setLocale(String lang) {
-        appState.myLocale = new Locale(lang);
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.locale = appState.myLocale;
-        res.updateConfiguration(conf, dm);
-        Intent refresh = new Intent(this, Menu.class);
-        startActivity(refresh);
-        finish();
-    }
-
+            }
+        };
+        timerThread.start();
 
 
     }
+
+
+
+
+}
 
 

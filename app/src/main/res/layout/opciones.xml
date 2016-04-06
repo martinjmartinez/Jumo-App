@@ -10,7 +10,7 @@
 
 
         <TextView
-        android:id="@+id/title"
+        android:id="@+id/title12"
         style="@style/AudioFileInfoOverlayText"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -158,7 +158,10 @@
                     android:switchMinWidth="40dp"
                     android:id="@+id/switchCachondo"
                     android:gravity="center_vertical"
-                    android:layout_marginRight="8dp" />
+
+                    android:layout_marginRight="8dp"
+                    android:clickable="false"
+                    android:enabled="false" />
 
 
 
@@ -191,7 +194,7 @@
                         android:layout_margin="8dp"
                         android:layout_weight="1"
                         android:textSize="20dp"
-                        android:background="@android:color/holo_blue_light"
+                        android:background="@drawable/mybutton"
                         android:textColor="@android:color/white"
                         android:fontFamily="sans-serif-medium"
                         android:onClick="setEspanol"/>
@@ -199,7 +202,7 @@
                     <Button
                         android:id="@+id/btningles"
                         android:layout_width="0dp"
-                        android:background="@android:color/holo_red_light"
+                        android:background="@drawable/mybutton2"
                         android:layout_height="wrap_content"
                         android:text="@string/ingles"
                         android:textAllCaps="false"
@@ -234,7 +237,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:background="@android:color/holo_blue_light"
+            android:background="@drawable/mybutton"
             android:onClick="volverMenu"
             android:fontFamily="sana-serif-light"
             android:text="@string/returnMenu"

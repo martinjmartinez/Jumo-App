@@ -10,7 +10,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="#ccFFFFFF"
+        android:background="@drawable/fondosexo"
         android:layout_margin="6dp"
         android:orientation="horizontal">
 
@@ -21,15 +21,27 @@
             android:layout_weight="0.35"
             android:layout_width="0dp"
             android:spinnerMode="dialog"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
             android:layout_height="match_parent"
             android:src="@drawable/masculino"
             android:onClick="hombre" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="match_parent"
+            android:background="#ccffffff"></View>
+
         <ImageView
             android:id="@+id/mujer"
             android:gravity="center_vertical"
             android:layout_weight="0.35"
             android:layout_width="0dp"
             android:spinnerMode="dialog"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
             android:layout_height="match_parent"
             android:src="@drawable/femenino"
             android:onClick="mujer"/>

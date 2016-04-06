@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 
 
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
@@ -14,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,6 +30,7 @@ import android.widget.PopupWindow;
 
 import android.widget.RelativeLayout;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -58,6 +62,8 @@ public class Jugadores extends AppCompatActivity {
     View popupView4;
     PopupWindow popupWindow4;
     ImageView sexbtn;
+    TextView titulo;
+    ImageView reset;
 
 
 
@@ -70,7 +76,10 @@ public class Jugadores extends AppCompatActivity {
 
         nombreJugador = (EditText) findViewById(R.id.nombreedit);
         listaJugadores = (ListView) findViewById(R.id.listView);
-
+        titulo = (TextView)findViewById(R.id.title123);
+        reset = (ImageView) findViewById(R.id.reset);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/manteka.ttf");
+        titulo.setTypeface(custom_font);
         layoutInflater = (LayoutInflater) getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         popupView4 = layoutInflater.inflate(R.layout.sexos, null);
         popupWindow4 = new PopupWindow(popupView4, RelativeLayout.LayoutParams.MATCH_PARENT,
@@ -128,6 +137,21 @@ public class Jugadores extends AppCompatActivity {
 
         popupWindow4.update();
 
+    }
+    public void reset (View view){
+      float ROTATE_FROM = 0.0f;
+       float ROTATE_TO = 360.0f;// 3.141592654f * 32.0f;
+        RotateAnimation r;
+        r = new RotateAnimation(ROTATE_FROM, ROTATE_TO, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        r.setDuration((long) 2 * 500);
+        r.setRepeatCount(0);
+        reset.startAnimation(r);
+        for(Jugador jugador : appState.getMyList()){
+            jugador.setPuntos(0);
+
+        }
+
+        adapter2.notifyDataSetChanged();
     }
     public void hombre(View view){
         selec=true;

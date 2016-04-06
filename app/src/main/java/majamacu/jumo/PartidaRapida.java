@@ -4,6 +4,7 @@ package majamacu.jumo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -38,7 +39,7 @@ public class PartidaRapida extends AppCompatActivity {
     TextView puntosJugador;
     TextSwitcher text;
     ImageView iconoplayer;
-
+    Vibrator vibrator;
     //variables para los popup del main layout
     View papa;
     Button next;
@@ -48,7 +49,7 @@ public class PartidaRapida extends AppCompatActivity {
 
     String titulo, descripcion;
     int puntos;
-    ArrayList<Integer>retos;
+    ArrayList<Integer> retos;
     String baseDatos;
 
     App app;
@@ -64,17 +65,17 @@ public class PartidaRapida extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         app = new App();
-        appState= ((Init)getApplicationContext());
+        appState = ((Init) getApplicationContext());
         anuncio = new InterstitialAd(this);
         anuncio.setAdUnitId("ca-app-pub-1101630221960337/1721735241");
         requestNewInterstitial();
 
-        retos=new ArrayList<Integer>();
+        retos = new ArrayList<Integer>();
 
-        if( appState.myLocale.getLanguage().equals("es")){
-            baseDatos="RetosTodos";
-        }else{
-            baseDatos="RetosTodosEn";
+        if (appState.myLocale.getLanguage().equals("es")) {
+            baseDatos = "RetosTodos";
+        } else {
+            baseDatos = "RetosTodosEn";
         }
 
         continua = false;
@@ -82,9 +83,8 @@ public class PartidaRapida extends AppCompatActivity {
         //inicializacion popup
 
 
-
         papa = (View) findViewById(R.id.papa);
-        next=(Button)findViewById(R.id.next);
+        next = (Button) findViewById(R.id.next);
         tituloText = (TextSwitcher) findViewById(R.id.titulo);
         nombreText = (TextSwitcher) findViewById(R.id.jugador);
         puntosJugador = (TextView) findViewById(R.id.sorbos);
@@ -101,6 +101,9 @@ public class PartidaRapida extends AppCompatActivity {
         texto2.setGravity(Gravity.CENTER);
         texto2.setTextAppearance(getApplicationContext(),
                 R.style.AudioFileInfoOverlayText);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/manteka.ttf");
+        texto.setTypeface(custom_font);
+        texto2.setTypeface(custom_font);
         tituloText.addView(texto);
         tituloText.addView(texto2);
 
@@ -134,7 +137,7 @@ public class PartidaRapida extends AppCompatActivity {
 
 
         contar();
-       resetlista(cantRetos);
+        resetlista(cantRetos);
         anuncio.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
@@ -145,18 +148,17 @@ public class PartidaRapida extends AppCompatActivity {
         getInfo();
 
 
-
     }
 
 
     public void siguiente(View view) {
 
 
-        if(retos.size()<10){
+        if (retos.size() < 10) {
             retos.clear();
             resetlista(cantRetos);
             getInfo();
-        }else
+        } else
             getInfo();
 
     }
@@ -164,7 +166,7 @@ public class PartidaRapida extends AppCompatActivity {
 
     public void getInfo() {
 
-        reto = randomInteger(0, retos.size()-1);
+        reto = randomInteger(0, retos.size() - 1);
         ParseQuery<ParseObject> query = ParseQuery.getQuery(baseDatos);
         query.fromLocalDatastore();
         query.whereEqualTo("Id", retos.get(reto));
@@ -192,6 +194,20 @@ public class PartidaRapida extends AppCompatActivity {
 
         tituloText.setInAnimation(this, R.anim.push_down_in);
         tituloText.setOutAnimation(this, R.anim.push_down_out);
+        TextView  theme =(TextView)tituloText.getChildAt(tituloText.getDisplayedChild());
+        if(puntos<=3){
+
+            theme.setTextColor(getResources().getColor(R.color.azul));
+
+        }else if(puntos>3 && puntos<=6){
+            theme.setTextColor(getResources().getColor(R.color.verde));
+
+        }else if(puntos>6){
+            vibrator.vibrate(1000);
+            theme.setTextColor(getResources().getColor(R.color.rojo));
+
+
+        }
         text.setInAnimation(this, R.anim.fadein);
         text.setOutAnimation(this, R.anim.fadeout);
         nombreText.setInAnimation(this, R.anim.fadein);
@@ -219,11 +235,6 @@ public class PartidaRapida extends AppCompatActivity {
     }
 
 
-
-
-
-
-
     public int randomInteger(int min, int max) {
 
         Random rand = new Random();
@@ -235,7 +246,7 @@ public class PartidaRapida extends AppCompatActivity {
     }
 
 
-   private void setAdUnitsEventListener() {
+    private void setAdUnitsEventListener() {
         MobileCore.setAdUnitEventListener(new AdUnitEventListener() {
 
             @Override
@@ -281,12 +292,11 @@ public class PartidaRapida extends AppCompatActivity {
     }
 
 
-    public void resetlista(int cantRetos){
-        for(int i=1;i<=cantRetos;i++){
+    public void resetlista(int cantRetos) {
+        for (int i = 1; i <= cantRetos; i++) {
             retos.add(i);
         }
     }
-
 
 
 }
