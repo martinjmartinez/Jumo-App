@@ -11,7 +11,7 @@
 
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/title123"
             style="@style/AudioFileInfoOverlayText"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -71,20 +71,39 @@
             android:layout_height="0dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:background="#aaE0E0E0"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:background="#aaE0E0E0">
+
 
             <ListView
 
                 android:id="@+id/listView"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:layout_margin="8dp"
 
                 android:clickable="true"
                 android:fadingEdge="horizontal"
 
                 />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+              android:layout_margin="6dp"
+                android:layout_weight="0.2">
+
+                <ImageView
+                    android:id="@+id/reset"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="reset"
+                    android:src="@drawable/restart" />
+            </RelativeLayout>
+
+
         </LinearLayout>
 
         <TextView
@@ -142,7 +161,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:background="@android:color/holo_blue_light"
+            android:background="@drawable/mybutton"
             android:fontFamily="sana-serif-light"
             android:onClick="jugar"
             android:text="@string/jugar"

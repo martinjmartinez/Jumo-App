@@ -1,6 +1,9 @@
 package majamacu.jumo;
 
 import android.app.Application;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
 
 import com.parse.Parse;
 
@@ -13,8 +16,9 @@ import java.util.Locale;
 public class Init extends Application {
 
     private ArrayList<Jugador> myList = new ArrayList<>();
-    private boolean personal=true,cachondo=true,grupal=true,espanol=false,happy=true,lito=false,jumo=false;
+    private boolean personal=true,cachondo=false,grupal=true,espanol=false,happy=true,lito=false,jumo=false;
     Locale myLocale;
+
 
     public boolean isHappy() {
         return happy;
@@ -84,8 +88,31 @@ public class Init extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this, "UzNevc1EDATPoTkqFR1H7KRr7PKD5ZKtxKsj2YOv", "HSXAgBv7ZknpFYaVamQ8KJYZF4A33hWbixP9RZiO");
+
+        // Add your initialization code here
+        Parse.initialize(new Parse.Configuration.Builder(getApplicationContext())
+                .applicationId("UzNevc1EDATPoTkqFR1H7KRr7PKD5ZKtxKsj2YOv")
+                .clientKey("7UtxRUlifcOGONvh1f8S6jySem30XlTgdDGdGhb1")
+                .server("http://jumo.herokuapp.com/parse/")
+                .enableLocalDataStore().build()
+        );
+
+        if (Locale.getDefault().getLanguage().equals("es")) {
+            setLocale("es");
+            setEspanol(true);
+        } else {
+            setLocale("en");
+            setEspanol(false);
+        }
+    }
+    public void setLocale(String lang) {
+        myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+
     }
 }
 

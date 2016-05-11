@@ -4,10 +4,11 @@ package majamacu.jumo;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
+
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -16,9 +17,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,9 +25,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RadioGroup;
+
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
+
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,9 +36,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.ironsource.mobilcore.AdUnitEventListener;
-import com.ironsource.mobilcore.MobileCore;
-import com.ironsource.mobilcore.UserProperties;
+
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -56,7 +53,7 @@ public class JugadaNormal extends AppCompatActivity {
     TextView puntosJugador;
     TextSwitcher text;
     ImageView iconoplayer;
-    private static final Integer[] emoticons = {R.drawable.mf, R.drawable.masculino, R.drawable.femenino};
+
 
     //variables para los popup del main layout
     LayoutInflater layoutInflater;
@@ -72,6 +69,7 @@ public class JugadaNormal extends AppCompatActivity {
     Button next,skip;
     boolean isHombre,selec;
     boolean continua;
+    Vibrator vibrator;
 
     InterstitialAd anuncio;
 
@@ -100,7 +98,6 @@ public class JugadaNormal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MobileCore.init(this, "HU5WQV7V4FT1GUNWA11OOKSRX1YL", new UserProperties().setGender(UserProperties.Gender.BOTH).setAgeRange(18, 45), MobileCore.LOG_TYPE.DEBUG, MobileCore.AD_UNITS.INTERSTITIAL, MobileCore.AD_UNITS.STICKEEZ);
         setContentView(R.layout.activity_main);
 
         appState= ((Init)getApplicationContext());
@@ -108,10 +105,12 @@ public class JugadaNormal extends AppCompatActivity {
         anuncio.setAdUnitId("ca-app-pub-1101630221960337/1721735241");
         requestNewInterstitial();
 
-        retos=new ArrayList<Integer>();
+        vibrator = (Vibrator) getSystemService(this.VIBRATOR_SERVICE);
+
+        retos=new ArrayList<>();
 
         if(appState.myLocale.getLanguage().equals("es")){
-            if(appState.isPersonal() && appState.isGrupal() && appState.isCachondo()){
+            if(appState.isPersonal() && appState.isGrupal() && !appState.isCachondo()){
                 baseDatos="Retos";
             }else if(appState.isPersonal() && !appState.isGrupal() && !appState.isCachondo()){
                 baseDatos="RetosPersonales";
@@ -119,20 +118,20 @@ public class JugadaNormal extends AppCompatActivity {
                 baseDatos="RetosTodos";
             }else if(!appState.isPersonal() && !appState.isGrupal() && appState.isCachondo()){
                 baseDatos="RetosCachondos";
-            }else if(appState.isPersonal() && appState.isGrupal() && !appState.isCachondo()){
+            }/*else if(appState.isPersonal() && appState.isGrupal() && !appState.isCachondo()){
                 baseDatos="RetosPG";
             }else if(appState.isPersonal() && !appState.isGrupal() && appState.isCachondo()){
                 baseDatos="RetosPC";
             }else if(!appState.isPersonal() && appState.isGrupal() && appState.isCachondo()) {
                 baseDatos = "RetosGC";
-            }
+            }*/
             else{
                 baseDatos="Retos";
             }
 
         }else{
 
-            if(appState.isPersonal() && appState.isGrupal() && appState.isCachondo()){
+            if(appState.isPersonal() && appState.isGrupal() && !appState.isCachondo()){
                 baseDatos="RetosEn";
             }else if(appState.isPersonal() && !appState.isGrupal() && !appState.isCachondo()){
                 baseDatos="RetosPersonalesEn";
@@ -140,13 +139,13 @@ public class JugadaNormal extends AppCompatActivity {
                 baseDatos="RetosTodosEn";
             }else if(!appState.isPersonal() && !appState.isGrupal() && appState.isCachondo()){
                 baseDatos="RetosCachondosEn";
-            }else if(appState.isPersonal() && appState.isGrupal() && !appState.isCachondo()){
+            }/*else if(appState.isPersonal() && appState.isGrupal() && !appState.isCachondo()){
                 baseDatos="RetosPGEn";
             }else if(appState.isPersonal() && !appState.isGrupal() && appState.isCachondo()){
                 baseDatos="RetosPCEn";
             }else if(!appState.isPersonal() && appState.isGrupal() && appState.isCachondo()) {
                 baseDatos = "RetosGCEn";
-            }
+            }*/
             else{
                 baseDatos="RetosEn";
             }
@@ -210,6 +209,9 @@ public class JugadaNormal extends AppCompatActivity {
         texto2.setGravity(Gravity.CENTER);
         texto2.setTextAppearance(getApplicationContext(),
                 R.style.AudioFileInfoOverlayText);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/manteka.ttf");
+        texto.setTypeface(custom_font);
+        texto2.setTypeface(custom_font);
         tituloText.addView(texto);
         tituloText.addView(texto2);
 
@@ -351,12 +353,27 @@ public class JugadaNormal extends AppCompatActivity {
         tituloText.setInAnimation(this, R.anim.push_down_in);
         tituloText.setOutAnimation(this, R.anim.push_down_out);
         text.setInAnimation(this, R.anim.fadein);
+        tituloText.setText(titulo);
+        TextView  theme =(TextView)tituloText.getChildAt(tituloText.getDisplayedChild());
+        if(puntos<=3){
+
+            theme.setTextColor(getResources().getColor(R.color.azul));
+
+        }else if(puntos>3 && puntos<=6){
+            theme.setTextColor(getResources().getColor(R.color.verde));
+
+        }else if(puntos>6){
+            vibrator.vibrate(1000);
+            theme.setTextColor(getResources().getColor(R.color.rojo));
+
+
+        }
         text.setOutAnimation(this, R.anim.fadeout);
         nombreText.setInAnimation(this, R.anim.fadein);
         nombreText.setOutAnimation(this, R.anim.fadeout);
 
 
-        tituloText.setText(titulo);
+
 
         if(todos==false && cachondo==false ) {
             skip.setVisibility(View.VISIBLE);
@@ -366,7 +383,7 @@ public class JugadaNormal extends AppCompatActivity {
                 iconoplayer.setImageResource(appState.getMyList().get(jugador).getImagen());
             }
 
-            next.setBackgroundColor(getResources().getColor(R.color.azul));
+            next.setBackground(getResources().getDrawable(R.drawable.mybutton));
             LinearLayout.LayoutParams paramsSkip = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT,2);
             paramsSkip.setMargins(0, 0, 8, 0);
             skip.setLayoutParams(paramsSkip);
@@ -397,7 +414,7 @@ public class JugadaNormal extends AppCompatActivity {
 
             skip.setVisibility(View.INVISIBLE);
             next.setLayoutParams(new LinearLayout.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            next.setBackgroundColor(getResources().getColor(R.color.verde));
+            next.setBackground(getResources().getDrawable(R.drawable.mybutton3));
             skip.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT));
             nombreText.setText(getText(R.string.Todos));
             iconoplayer.setImageResource(R.drawable.todos);
@@ -410,23 +427,22 @@ public class JugadaNormal extends AppCompatActivity {
 
         int chance = randomInteger(0, 100);
 
-        if (chance > 85) {
-            int adModorMobileC = randomInteger(0, 100);
-            if (adModorMobileC < 80) {
+        if (chance > 90) {
                 if (anuncio.isLoaded()) {
                     anuncio.show();
                 }
-            } else {
-                MobileCore.showInterstitial(JugadaNormal.this, MobileCore.AD_UNIT_SHOW_TRIGGER.APP_START, null);
-            }
         }
     }
+
 
 
     public void tablero(View view) {
 
         final ListAdapter adapter = new ListAdapter(this, R.layout.row, appState.getMyList());
         adapter.notifyDataSetChanged();
+        TextView title = (TextView)popupView2.findViewById(R.id.title1234);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/manteka.ttf");
+        title.setTypeface(custom_font);
         popupWindow2.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         popupWindow2.setOutsideTouchable(true);
         popupWindow2.setFocusable(true);
@@ -554,29 +570,7 @@ public class JugadaNormal extends AppCompatActivity {
         this.prev = prev;
     }
 
-   private void setAdUnitsEventListener() {
-        MobileCore.setAdUnitEventListener(new AdUnitEventListener() {
 
-            @Override
-            public void onAdUnitEvent(MobileCore.AD_UNITS adUnit, EVENT_TYPE eventType) {
-
-                switch (adUnit) {
-                    case INTERSTITIAL:
-                        if (EVENT_TYPE.AD_UNIT_READY == eventType) {
-                            MobileCore.showInterstitial(JugadaNormal.this, MobileCore.AD_UNIT_SHOW_TRIGGER.APP_START, null);
-                        }
-                        break;
-                    case STICKEEZ:
-                        if (AdUnitEventListener.EVENT_TYPE.AD_UNIT_READY == eventType) {
-                            MobileCore.showStickee(JugadaNormal.this);
-                        }
-                        break;
-                }
-
-            }
-        });
-
-    }
 
     private void requestNewInterstitial() {
         AdRequest adRequest = new AdRequest.Builder()
