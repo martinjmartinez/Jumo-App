@@ -13,8 +13,6 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.ironsource.mobilcore.CallbackResponse;
-import com.ironsource.mobilcore.MobileCore;
 
 import java.util.Locale;
 

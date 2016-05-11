@@ -88,8 +88,15 @@ public class Init extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this, "UzNevc1EDATPoTkqFR1H7KRr7PKD5ZKtxKsj2YOv", "HSXAgBv7ZknpFYaVamQ8KJYZF4A33hWbixP9RZiO");
+
+        // Add your initialization code here
+        Parse.initialize(new Parse.Configuration.Builder(getApplicationContext())
+                .applicationId("UzNevc1EDATPoTkqFR1H7KRr7PKD5ZKtxKsj2YOv")
+                .clientKey("7UtxRUlifcOGONvh1f8S6jySem30XlTgdDGdGhb1")
+                .server("http://jumo.herokuapp.com/parse/")
+                .enableLocalDataStore().build()
+        );
+
         if (Locale.getDefault().getLanguage().equals("es")) {
             setLocale("es");
             setEspanol(true);

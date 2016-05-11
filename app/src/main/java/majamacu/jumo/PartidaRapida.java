@@ -7,22 +7,19 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
-import android.view.LayoutInflater;
+
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.PopupWindow;
+
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.ironsource.mobilcore.AdUnitEventListener;
-import com.ironsource.mobilcore.MobileCore;
-import com.ironsource.mobilcore.UserProperties;
+
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -61,7 +58,7 @@ public class PartidaRapida extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MobileCore.init(this, "HU5WQV7V4FT1GUNWA11OOKSRX1YL", new UserProperties().setGender(UserProperties.Gender.BOTH).setAgeRange(18, 45), MobileCore.LOG_TYPE.DEBUG, MobileCore.AD_UNITS.INTERSTITIAL, MobileCore.AD_UNITS.STICKEEZ);
+
         setContentView(R.layout.activity_main2);
 
         app = new App();
@@ -222,17 +219,16 @@ public class PartidaRapida extends AppCompatActivity {
 
         int chance = randomInteger(0, 100);
 
-        if (chance > 85) {
-            int adModorMobileC = randomInteger(0, 100);
-            if (adModorMobileC < 80) {
+        if (chance > 90) {
+
+
                 if (anuncio.isLoaded()) {
                     anuncio.show();
                 }
-            } else {
-                MobileCore.showInterstitial(PartidaRapida.this, MobileCore.AD_UNIT_SHOW_TRIGGER.APP_START, null);
-            }
+
         }
     }
+
 
 
     public int randomInteger(int min, int max) {
@@ -246,29 +242,7 @@ public class PartidaRapida extends AppCompatActivity {
     }
 
 
-    private void setAdUnitsEventListener() {
-        MobileCore.setAdUnitEventListener(new AdUnitEventListener() {
 
-            @Override
-            public void onAdUnitEvent(MobileCore.AD_UNITS adUnit, EVENT_TYPE eventType) {
-
-                switch (adUnit) {
-                    case INTERSTITIAL:
-                        if (EVENT_TYPE.AD_UNIT_READY == eventType) {
-                            MobileCore.showInterstitial(PartidaRapida.this, MobileCore.AD_UNIT_SHOW_TRIGGER.APP_START, null);
-                        }
-                        break;
-                    case STICKEEZ:
-                        if (EVENT_TYPE.AD_UNIT_READY == eventType) {
-                            MobileCore.showStickee(PartidaRapida.this);
-                        }
-                        break;
-                }
-
-            }
-        });
-
-    }
 
     private void requestNewInterstitial() {
         AdRequest adRequest = new AdRequest.Builder()

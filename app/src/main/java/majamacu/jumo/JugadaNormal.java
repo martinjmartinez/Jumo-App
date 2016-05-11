@@ -4,7 +4,7 @@ package majamacu.jumo;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
+
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -17,9 +17,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,9 +25,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RadioGroup;
+
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
+
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,9 +36,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.ironsource.mobilcore.AdUnitEventListener;
-import com.ironsource.mobilcore.MobileCore;
-import com.ironsource.mobilcore.UserProperties;
+
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -57,7 +53,7 @@ public class JugadaNormal extends AppCompatActivity {
     TextView puntosJugador;
     TextSwitcher text;
     ImageView iconoplayer;
-    private static final Integer[] emoticons = {R.drawable.mf, R.drawable.masculino, R.drawable.femenino};
+
 
     //variables para los popup del main layout
     LayoutInflater layoutInflater;
@@ -102,7 +98,6 @@ public class JugadaNormal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MobileCore.init(this, "HU5WQV7V4FT1GUNWA11OOKSRX1YL", new UserProperties().setGender(UserProperties.Gender.BOTH).setAgeRange(18, 45), MobileCore.LOG_TYPE.DEBUG, MobileCore.AD_UNITS.INTERSTITIAL, MobileCore.AD_UNITS.STICKEEZ);
         setContentView(R.layout.activity_main);
 
         appState= ((Init)getApplicationContext());
@@ -112,7 +107,7 @@ public class JugadaNormal extends AppCompatActivity {
 
         vibrator = (Vibrator) getSystemService(this.VIBRATOR_SERVICE);
 
-        retos=new ArrayList<Integer>();
+        retos=new ArrayList<>();
 
         if(appState.myLocale.getLanguage().equals("es")){
             if(appState.isPersonal() && appState.isGrupal() && !appState.isCachondo()){
@@ -432,17 +427,13 @@ public class JugadaNormal extends AppCompatActivity {
 
         int chance = randomInteger(0, 100);
 
-        if (chance > 85) {
-            int adModorMobileC = randomInteger(0, 100);
-            if (adModorMobileC < 80) {
+        if (chance > 90) {
                 if (anuncio.isLoaded()) {
                     anuncio.show();
                 }
-            } else {
-                MobileCore.showInterstitial(JugadaNormal.this, MobileCore.AD_UNIT_SHOW_TRIGGER.APP_START, null);
-            }
         }
     }
+
 
 
     public void tablero(View view) {
@@ -579,29 +570,7 @@ public class JugadaNormal extends AppCompatActivity {
         this.prev = prev;
     }
 
-   private void setAdUnitsEventListener() {
-        MobileCore.setAdUnitEventListener(new AdUnitEventListener() {
 
-            @Override
-            public void onAdUnitEvent(MobileCore.AD_UNITS adUnit, EVENT_TYPE eventType) {
-
-                switch (adUnit) {
-                    case INTERSTITIAL:
-                        if (EVENT_TYPE.AD_UNIT_READY == eventType) {
-                            MobileCore.showInterstitial(JugadaNormal.this, MobileCore.AD_UNIT_SHOW_TRIGGER.APP_START, null);
-                        }
-                        break;
-                    case STICKEEZ:
-                        if (AdUnitEventListener.EVENT_TYPE.AD_UNIT_READY == eventType) {
-                            MobileCore.showStickee(JugadaNormal.this);
-                        }
-                        break;
-                }
-
-            }
-        });
-
-    }
 
     private void requestNewInterstitial() {
         AdRequest adRequest = new AdRequest.Builder()
